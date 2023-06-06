@@ -1,4 +1,4 @@
-package com.plantgrowerspringboot.main;
+package com.plantgrowerspringboot;
 
 import com.plantgrowerspringboot.PlantGrowerSpringbootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

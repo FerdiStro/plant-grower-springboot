@@ -38,6 +38,8 @@ dependencies {
     compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.0.0'
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.7.2'
+// https://mvnrepository.com/artifact/io.swagger/swagger-annotations
+    implementation group: 'io.swagger', name: 'swagger-annotations', version: '1.6.11'
 
 
 

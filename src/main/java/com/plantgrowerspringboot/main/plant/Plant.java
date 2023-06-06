@@ -7,7 +7,8 @@ import lombok.Setter;
 @Setter
 public class Plant {
     private String name;
-    private  int mos;
+    private  String mos;
+    private int pump;
 
 
 
