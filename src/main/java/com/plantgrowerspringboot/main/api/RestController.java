@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
@@ -29,11 +32,13 @@ public class RestController {
         Plant plant = repository.get(name);
         if(plant != null) {
             plant.setMos(mos);
+            plant.setLast(LocalDate.now());
         }else {
             plant =  new Plant();
             plant.setPump(0);
             plant.setName(name);
             plant.setMos(mos);
+            plant.setLast(LocalDate.now());
         }
         repository.save(plant);
         PutDataForNameResponse putDataResponse = new PutDataForNameResponse();
