@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 
 @org.springframework.web.bind.annotation.RestController
@@ -27,6 +26,7 @@ public class RestController {
 
     }
 
+    @CrossOrigin
     @GetMapping(value = "/data/{name}")
     public ResponseEntity<PutDataForNameResponse> putData(@RequestParam(value="mos")String mos, @PathVariable("name") String name){
         Plant plant = repository.get(name);
@@ -39,14 +39,19 @@ public class RestController {
             plant.setName(name);
             plant.setMos(mos);
             plant.setLast(LocalDate.now());
+            plant.setStatus(true);
+            plant.setAvg("50.00");
         }
         repository.save(plant);
         PutDataForNameResponse putDataResponse = new PutDataForNameResponse();
         putDataResponse.setPump(plant.getPump());
         return new ResponseEntity<>(putDataResponse, HttpStatus.OK);
     }
+
+    @CrossOrigin
     @PutMapping(value = "/pump/{name}")
     public ResponseEntity<PutPumpForNameResponse> putPump(@RequestParam(value="pumpState")int pumpState, @PathVariable("name") String name){
+        System.out.println("TESTETTETTE");
         Plant plant = repository.get(name);
         if(plant != null){
             plant.setPump(pumpState);
@@ -59,10 +64,12 @@ public class RestController {
             throw new PlantNotFoundException(name);
         }
     }
+    @CrossOrigin
     @GetMapping(value = "/getAll")
     public ResponseEntity<GetAllResponse> getAll(){
         GetAllResponse response  =  new GetAllResponse();
         response.setAllPlant(repository.getAll());
+        System.out.println("ALLL");
         return new ResponseEntity<>(response,  HttpStatus.OK);
     }
 

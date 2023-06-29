@@ -12,6 +12,8 @@ public class Plant {
     private  String mos;
     private int pump;
     private LocalDate last;
+    private boolean status;
+    private String avg;
 
 
 
