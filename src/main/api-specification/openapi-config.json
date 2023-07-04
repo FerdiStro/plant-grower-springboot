@@ -1,0 +1,15 @@
+{
+  "title": "Plant Grow API",
+  "dateLibrary": "java8",
+  "groupId": "com.plant.services",
+  "artifactId": "plantgrow-service",
+  "basePackage": "com.plant.plantgrow",
+  "apiPackage": "com.plant.plantgrow.api",
+  "modelPackage": "com.plant.plantgrow.model",
+  "configPackage": "com.plant.plantgrow.config",
+  "async": false,
+  "useOptional": false,
+  "useBeanValidation": true,
+  "interfaceOnly": true,
+  "library": "spring-cloud"
+}

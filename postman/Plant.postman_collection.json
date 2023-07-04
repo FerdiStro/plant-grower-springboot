@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "a95f3eae-63cb-40d2-86fc-696b1ad550a5",
+		"name": "Plant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18123879",
+		"_collection_link": "https://universal-satellite-796219.postman.co/workspace/Finished-CleanUp~5d979bfe-f19b-4f31-b331-fdc2cdd8e4e0/collection/18123879-a95f3eae-63cb-40d2-86fc-696b1ad550a5?action=share&creator=18123879&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Put Data by Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{server_adress}}/setData/{{plant}}?mos=20.00",
+					"protocol": "http",
+					"host": [
+						"{{server_adress}}"
+					],
+					"path": [
+						"setData",
+						"{{plant}}"
+					],
+					"query": [
+						{
+							"key": "mos",
+							"value": "20.00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{server_adress}}/getAll",
+					"protocol": "http",
+					"host": [
+						"{{server_adress}}"
+					],
+					"path": [
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Data by Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{server_adress}}/data/{{plant}}",
+					"protocol": "http",
+					"host": [
+						"{{server_adress}}"
+					],
+					"path": [
+						"data",
+						"{{plant}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Pump by Name",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://{{server_adress}}/setPump/{{plant}}?pump=1",
+					"protocol": "http",
+					"host": [
+						"{{server_adress}}"
+					],
+					"path": [
+						"setPump",
+						"{{plant}}"
+					],
+					"query": [
+						{
+							"key": "pump",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pump by Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{server_adress}}/pump/{{plant}}",
+					"protocol": "http",
+					"host": [
+						"{{server_adress}}"
+					],
+					"path": [
+						"pump",
+						"{{plant}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

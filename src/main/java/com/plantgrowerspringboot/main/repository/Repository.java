@@ -1,6 +1,7 @@
 package com.plantgrowerspringboot.main.repository;
 
-import com.plantgrowerspringboot.main.plant.Plant;
+
+import com.plant.plantgrow.model.Plant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,11 @@ import java.util.Map;
 @Slf4j
 public class Repository {
 
+
+
     HashMap<String, Plant> plantHashMap =  new HashMap<>();
+
+
 
 
     public void save(Plant plant){
