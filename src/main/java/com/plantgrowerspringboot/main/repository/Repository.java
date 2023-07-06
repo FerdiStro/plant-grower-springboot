@@ -5,6 +5,7 @@ import com.plant.plantgrow.model.Plant;
 import com.plantgrowerspringboot.main.repository.database.PlantRepository;
 import com.plantgrowerspringboot.main.repository.database.PlantEntity;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -25,16 +26,26 @@ public class Repository {
 
 
     public void save(Plant plant){
-        plant.setId(Math.toIntExact(idMap.get(plant.getName())));
+        if(idMap.get(plant.getName()) !=null){
+            plant.setId(Math.toIntExact(idMap.get(plant.getName())));
+        }
         plantRepository.save(plantRepository.convertToPlantEntity(plant));
         refresh();
     }
     public Plant get(String name){
+        if(idMap.get(name)==null){
+            return null;
+        }
         return plantRepository.converToPlant(plantRepository.getReferenceById(idMap.get(name)));
     }
 
     public List<Plant> getAll(){
         return plantRepository.converToPlantList(plantRepository.findAll());
+    }
+
+    public void delete(Plant plant){
+        plantRepository.delete(plantRepository.convertToPlantEntity(plant));
+        refresh();
     }
 
     @PostConstruct

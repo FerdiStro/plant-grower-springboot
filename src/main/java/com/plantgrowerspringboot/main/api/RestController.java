@@ -23,6 +23,11 @@ public class RestController implements PlantGrowApi {
        return requestHandler.getAllPlantData();
     }
 
+    @Override
+    public ResponseEntity<DeleteNameResponse> deletePlantName(String name) {
+        return requestHandler.deletePlantName(name);
+    }
+
 
     @Override
     public ResponseEntity<PumpNameResponse> getPumpName(String name) {

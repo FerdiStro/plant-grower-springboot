@@ -135,7 +135,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/pumpNameResponse"
 
-
+  /deletePlant/{name}:
+    delete:
+      tags:
+        - plantGrow
+      summary:  deletePlantName
+      description: Delete a Plant by Name
+      operationId: deletePlantName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: Plant name (ID)
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteNameResponse"
 
 
 
@@ -185,6 +205,12 @@ components:
           description: pump state (0 or 1)
           type: integer
 
+    deleteNameResponse:
+      type: object
+      properties:
+        operation:
+          description: if operation work
+          type: boolean
 
     plant:
       type: object
