@@ -8,110 +8,134 @@
 	},
 	"item": [
 		{
-			"name": "Put Data by Name",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://{{server_adress}}/setData/{{plant}}?mos=20.00",
-					"protocol": "http",
-					"host": [
-						"{{server_adress}}"
-					],
-					"path": [
-						"setData",
-						"{{plant}}"
-					],
-					"query": [
-						{
-							"key": "mos",
-							"value": "20.00"
+			"name": "PLANT-GROW-API",
+			"item": [
+				{
+					"name": "Put Data by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{server_adress}}/setData/{{plant}}?mos=20.00",
+							"protocol": "http",
+							"host": [
+								"{{server_adress}}"
+							],
+							"path": [
+								"setData",
+								"{{plant}}"
+							],
+							"query": [
+								{
+									"key": "mos",
+									"value": "20.00"
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://{{server_adress}}/getAll",
-					"protocol": "http",
-					"host": [
-						"{{server_adress}}"
-					],
-					"path": [
-						"getAll"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Data by Name",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://{{server_adress}}/data/{{plant}}",
-					"protocol": "http",
-					"host": [
-						"{{server_adress}}"
-					],
-					"path": [
-						"data",
-						"{{plant}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Put Pump by Name",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://{{server_adress}}/setPump/{{plant}}?pump=1",
-					"protocol": "http",
-					"host": [
-						"{{server_adress}}"
-					],
-					"path": [
-						"setPump",
-						"{{plant}}"
-					],
-					"query": [
-						{
-							"key": "pump",
-							"value": "1"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{server_adress}}/getAll",
+							"protocol": "http",
+							"host": [
+								"{{server_adress}}"
+							],
+							"path": [
+								"getAll"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Get Data by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{server_adress}}/data/{{plant}}",
+							"protocol": "http",
+							"host": [
+								"{{server_adress}}"
+							],
+							"path": [
+								"data",
+								"{{plant}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Pump by Name",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://{{server_adress}}/setPump/{{plant}}?pump=1",
+							"protocol": "http",
+							"host": [
+								"{{server_adress}}"
+							],
+							"path": [
+								"setPump",
+								"{{plant}}"
+							],
+							"query": [
+								{
+									"key": "pump",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pump by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{server_adress}}/pump/{{plant}}",
+							"protocol": "http",
+							"host": [
+								"{{server_adress}}"
+							],
+							"path": [
+								"pump",
+								"{{plant}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Plant by Name",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{server_adress}}/deletePlant/{{plant}}",
+							"protocol": "http",
+							"host": [
+								"{{server_adress}}"
+							],
+							"path": [
+								"deletePlant",
+								"{{plant}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Pump by Name",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://{{server_adress}}/pump/{{plant}}",
-					"protocol": "http",
-					"host": [
-						"{{server_adress}}"
-					],
-					"path": [
-						"pump",
-						"{{plant}}"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }
