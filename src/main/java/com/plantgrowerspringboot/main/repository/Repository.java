@@ -2,10 +2,12 @@ package com.plantgrowerspringboot.main.repository;
 
 
 import com.plant.plantgrow.model.Plant;
+import com.plantgrowerspringboot.main.repository.database.PlantRepository;
+import com.plantgrowerspringboot.main.repository.database.PlantEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,26 +16,32 @@ import java.util.Map;
 @Slf4j
 public class Repository {
 
+    private Map<String, Long> idMap = new HashMap<>();
+    private final PlantRepository plantRepository;
 
-
-    HashMap<String, Plant> plantHashMap =  new HashMap<>();
-
-
+    public Repository(PlantRepository plantRepository){
+        this.plantRepository =  plantRepository;
+    }
 
 
     public void save(Plant plant){
-        plantHashMap.put(plant.getName(), plant);
+        plant.setId(Math.toIntExact(idMap.get(plant.getName())));
+        plantRepository.save(plantRepository.convertToPlantEntity(plant));
+        refresh();
     }
     public Plant get(String name){
-      return   plantHashMap.get(name);
+        return plantRepository.converToPlant(plantRepository.getReferenceById(idMap.get(name)));
     }
 
     public List<Plant> getAll(){
-        List<Plant> list = new ArrayList<>();
-        for(Map.Entry<String, Plant> entry : plantHashMap.entrySet()) {
-            list.add(entry.getValue());
+        return plantRepository.converToPlantList(plantRepository.findAll());
+    }
+
+    @PostConstruct
+    public void refresh(){
+        for(PlantEntity plant: plantRepository.findAll()){
+            idMap.put(plant.getName(), plant.getId());
         }
-        return list;
     }
 
 

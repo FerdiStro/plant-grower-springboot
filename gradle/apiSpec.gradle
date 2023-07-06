@@ -38,14 +38,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9'
     implementation 'org.springframework.boot:spring-boot-starter-tomcat'
-
     implementation group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.29'
     implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.29'
     implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-multipart', version: '2.29'
     implementation group: 'org.openapitools', name: 'jackson-databind-nullable', version: '0.2.0'
 
     api group: 'org.openapitools', name: 'openapi-generator-cli', version: '4.1.1'
-    // https://mvnrepository.com/artifact/javax.validation/validation-api
 
 
 }
@@ -69,15 +67,8 @@ task generateApi_Code {
                     '-i', "$projectDir/src/main/api-specification/plant-grow-api.openapi-3.0.yml",
                     '-o', "$projectDir/build/generated-sources/api",
                     '-c', "$projectDir/src/main/api-specification/openapi-config.json",
-//                    '--verbose'
             ]
         }
     }
 }
 
-// Weitere Tasks hier
-
-// Optional: Wenn du den Task "generateApi_Code" bei jedem Build ausführen möchtest, kannst du die folgende Zeile hinzufügen:
-// build.dependsOn generateApi_Code
-
-//apiSpec.gradle-Datei endet hier

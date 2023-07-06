@@ -189,6 +189,9 @@ components:
     plant:
       type: object
       properties:
+        id:
+          type: integer
+          description: id from database
         name:
           type: string
           description: Plant Name
@@ -204,3 +207,5 @@ components:
         avg:
           type: string
           description: Average MOS of the plant
+      x-jpa-entity: true
+      x-jpa-table-name: plants
