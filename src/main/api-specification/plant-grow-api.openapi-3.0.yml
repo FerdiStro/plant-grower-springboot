@@ -186,7 +186,7 @@ components:
           type: array
           description: all Plants
           items:
-            $ref: "#/components/schemas/plant"
+            $ref: "#/components/schemas/plantAll"
 
     pumpNameResponse:
       type: object
@@ -211,6 +211,17 @@ components:
         operation:
           description: if operation work
           type: boolean
+
+
+    plantAll:
+      type: object
+      properties:
+        status:
+          type: boolean
+          description: status of Plant
+        plant:
+          description: Requested Plant Object
+          $ref: "#/components/schemas/plant"
 
     plant:
       type: object

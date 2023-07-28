@@ -4,6 +4,7 @@ package com.plantgrowerspringboot.main.repository;
 import com.plant.plantgrow.model.Plant;
 import com.plantgrowerspringboot.main.repository.database.PlantRepository;
 import com.plantgrowerspringboot.main.repository.database.PlantEntity;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.Map;
 @Slf4j
 public class Repository {
 
+    @Getter
     private Map<String, Long> idMap = new HashMap<>();
     private final PlantRepository plantRepository;
 
