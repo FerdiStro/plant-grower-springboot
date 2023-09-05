@@ -1,0 +1,33 @@
+# Plant
+
+###
+# group: PLANT-GROW-API
+# @name Put Data by Name
+GET http://{{server_adress}}/setData/{{plant}}?
+    mos=20.00
+
+###
+# group: PLANT-GROW-API
+# @name Get All
+GET http://{{server_adress}}/getAll
+
+###
+# group: PLANT-GROW-API
+# @name Get Data by Name
+GET http://{{server_adress}}/data/{{plant}}
+
+###
+# group: PLANT-GROW-API
+# @name Put Pump by Name
+PUT http://{{server_adress}}/setPump/{{plant}}?
+    pump=1
+
+###
+# group: PLANT-GROW-API
+# @name Get Pump by Name
+GET http://{{server_adress}}/pump/{{plant}}
+
+###
+# group: PLANT-GROW-API
+# @name Delete Plant by Name
+DELETE http://{{server_adress}}/deletePlant/{{plant}}
