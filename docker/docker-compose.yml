@@ -1,7 +1,16 @@
 version: '3'
 services:
+  spring:
+    image: plant-grower-springboot
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+
+
   db:
-    image: postgres
+    image: postgres:15.0
     restart: always
     environment:
       POSTGRES_USER: your_username
@@ -10,7 +19,10 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - "5432:5432"
+
+
+
 
 volumes:
   db-data:
