@@ -46,6 +46,12 @@ dependencies {
 
 }
 
+if (project.hasProperty('prod')) {
+    apply from: 'gradle/profile_prod.gradle'
+} else {
+    apply from: 'gradle/profile_dev.gradle'
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
