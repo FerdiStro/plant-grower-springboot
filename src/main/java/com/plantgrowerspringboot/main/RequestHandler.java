@@ -4,6 +4,7 @@ import com.plant.plantgrow.model.*;
 import com.plantgrowerspringboot.main.api.Exeptoins.PlantNotFoundException;
 import com.plantgrowerspringboot.main.repository.Repository;
 import com.plantgrowerspringboot.main.statusManager.StatusManager;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Slf4j
 public class RequestHandler{
 
     private Repository repository;
@@ -41,6 +43,7 @@ public class RequestHandler{
         PlantDataNameResponse response  = new PlantDataNameResponse() ;
         response.setPlant(checkIfExist(name, true));
         response.setStatus(statusManager.getStatus(name));
+        log.info(response.toString());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -50,12 +53,14 @@ public class RequestHandler{
         plant.setPump(pump);
         repository.save(plant);
         response.setPump(pump);
+        log.info(response.toString());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     public ResponseEntity<PumpNameResponse> getPumpName(String name) {
         Plant plant = checkIfExist(name,true);
         PumpNameResponse response  =  new PumpNameResponse();
         response.setPump(plant.getPump());
+        log.info(response.toString());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -75,6 +80,7 @@ public class RequestHandler{
         plant.setLast(LocalDate.now().toString());
         statusManager.setStatusTrue(name);
         repository.save(plant);
+        log.info(response.toString());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -84,6 +90,7 @@ public class RequestHandler{
         Plant plant = checkIfExist(name, true);
         repository.delete(plant);
         response.setOperation(true);
+        log.info(response.toString());
         return new ResponseEntity<>( response , HttpStatus.OK);
     }
 
