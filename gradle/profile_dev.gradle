@@ -1,0 +1,15 @@
+
+def profile =  "dev"
+
+
+
+processResources{
+    filesMatching('**/application*.yml'){}
+
+
+    filesMatching('**/bootstrap.yml') {
+        filter {
+            it.replace('#spring.profiles.active#', profile)
+        }
+    }
+}
