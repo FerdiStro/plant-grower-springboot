@@ -1,6 +1,7 @@
 package com.plantgrowerspringboot.main;
 
 import com.plant.plantgrow.model.*;
+import com.plantgrowerspringboot.TestClass;
 import com.plantgrowerspringboot.main.api.Exeptoins.PlantNotFoundException;
 import com.plantgrowerspringboot.main.repository.Repository;
 import com.plantgrowerspringboot.main.statusManager.StatusManager;
@@ -19,9 +20,11 @@ public class RequestHandler{
     private Repository repository;
     private StatusManager statusManager;
 
+
     public RequestHandler(Repository repository, StatusManager statusManager){
         this.repository = repository;
         this.statusManager =  statusManager;
+
     }
 
 
@@ -64,7 +67,7 @@ public class RequestHandler{
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    public ResponseEntity<SetPlantDataNameResponse> putDataName(String name, String data){
+    public ResponseEntity<SetPlantDataNameResponse> putDataName(String name, String data, String pb){
         SetPlantDataNameResponse response =  new SetPlantDataNameResponse();
         Plant plant = checkIfExist(name, false);
         if(plant != null){
@@ -73,6 +76,7 @@ public class RequestHandler{
             plant =  new Plant();
             plant.setName(name);
             plant.setPump(0);
+            plant.setPb(pb);
             plant.setAvg(data);
             response.setNewPlant(true);
         }
@@ -104,6 +108,7 @@ public class RequestHandler{
         }
         return null;
     }
+
 
 
 

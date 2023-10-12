@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: your_password
       POSTGRES_DB: your_database
     volumes:
-      - db-data:/var/lib/postgresql/local/data/
+      - db-data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
 

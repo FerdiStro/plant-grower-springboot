@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.toIntExact;
+
 
 public interface PlantRepository extends JpaRepository<PlantEntity, Long> {
 
@@ -16,7 +18,8 @@ public interface PlantRepository extends JpaRepository<PlantEntity, Long> {
         plant.setAvg(plantEntity.getAvg());
         plant.setName(plantEntity.getName());
         plant.setMos(plantEntity.getMos());
-        plant.setId(Math.toIntExact(plantEntity.getId()));
+        plant.setPb(plantEntity.getPb());
+        plant.setId(toIntExact(plantEntity.getId()));
         return plant;
     }
 
@@ -27,6 +30,7 @@ public interface PlantRepository extends JpaRepository<PlantEntity, Long> {
         plantEntity.setAvg(plant.getAvg());
         plantEntity.setName(plant.getName());
         plantEntity.setMos(plant.getMos());
+        plantEntity.setPb(plant.getPb());
         if(plant.getId() != null){
             plantEntity.setId(Long.valueOf(plant.getId()));
         }
