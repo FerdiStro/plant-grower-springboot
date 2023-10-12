@@ -62,6 +62,15 @@ paths:
           description: mos (data) from Plant
           schema:
             type: string
+      requestBody:
+         content:
+          application/json:
+           schema:
+             $ref: "#/components/schemas/setDataBody"
+
+
+
+
       responses:
         "200":
           description: Success
@@ -220,8 +229,14 @@ components:
           type: boolean
           description: status of Plant
         plant:
-          description: Requested Plant Object
           $ref: "#/components/schemas/plant"
+
+    setDataBody:
+      type: object
+      properties:
+        pb:
+          type: string
+          description: base64 String for profile-picture
 
     plant:
       type: object
@@ -244,5 +259,8 @@ components:
         avg:
           type: string
           description: Average MOS of the plant
+        pb:
+          type: string
+          description: profile picture as base64 string
       x-jpa-entity: true
       x-jpa-table-name: plants

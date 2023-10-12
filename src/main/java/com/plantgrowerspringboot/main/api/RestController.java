@@ -35,8 +35,8 @@ public class RestController implements PlantGrowApi {
     }
 
     @Override
-    public ResponseEntity<SetPlantDataNameResponse> putDataName(String name, String mos) {
-        return requestHandler.putDataName(name, mos);
+    public ResponseEntity<SetPlantDataNameResponse> putDataName(String name, String mos, SetDataBody setDataBody) {
+        return requestHandler.putDataName(name, mos, setDataBody.getPb());
     }
 
     @Override

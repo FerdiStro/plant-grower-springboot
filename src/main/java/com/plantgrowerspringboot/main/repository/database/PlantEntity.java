@@ -26,4 +26,6 @@ public class PlantEntity {
 
     private String avg;
 
+    private String pb;
+
 }
