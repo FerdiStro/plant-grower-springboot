@@ -35,4 +35,4 @@ jobs:
         env:
           SONAR_TOKEN: sqp_fb5924b7078b8cfb9c4fc2e3774b1fbadb6340b0
           SONAR_HOST_URL: http://ferdi-homelab.casa:9000/
-        run: ./gradlew build sonar --info
+        run: ./gradlew build sonar --debug
