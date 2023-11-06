@@ -1,0 +1,23 @@
+apply plugin: "org.sonarqube"
+
+
+sonar {
+    properties {
+        property "sonar.host.url", "${sonar_cloud_url}" // Die URL deines SonarQube-Servers
+        property "sonar.login", "${sonar_cloud_logintoken}" // Dein SonarQube-Token
+        property "sonar.projectKey", "${sonar_cloud_projectKey}" // Eindeutiger Projekt-Key
+        property "sonar.projectName", "${sonar_cloud_projectName}" // Projektname
+
+    }
+}
+
+tasks.register('sonarcheck') {
+    doLast {
+        if (project.hasProperty('prod')) {
+
+            tasks.sonar.extensions
+        } else {
+            logger.lifecycle("Sonar Skipped, Profile is not in prod mod")
+        }
+    }
+}
