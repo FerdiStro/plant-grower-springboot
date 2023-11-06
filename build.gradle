@@ -1,3 +1,15 @@
+buildscript {
+
+    ext {
+        // sonarcloud configuration
+        sonar_cloud_url = 'XX'
+        sonar_cloud_projectKey = 'XX'
+        sonar_cloud_projectName = 'XX'
+        sonar_cloud_logintoken = 'XX'
+
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.6'
@@ -6,15 +18,13 @@ plugins {
 
 }
 
-sonar {
-    properties {
-        property "sonar.projectKey", "Plant-Spring"
-        property "sonar.projectName", "Plant-Spring"
-    }
-}
+
+
 
 
 apply from: 'gradle/apiSpec.gradle'
+apply from: 'gradle/sonar.gradle'
+
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -71,3 +81,5 @@ tasks.named('test') {
 
 compileJava.dependsOn generateApi_Code
 
+
+compileJava.dependsOn sonarcheck
