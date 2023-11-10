@@ -18,6 +18,41 @@ tags:
   - name: plantGrow
 
 paths:
+  /statsImage/{name}:
+    get:
+      tags:
+        - publicStats
+      summary: getStatsImageName
+      description: get Stats as SVG or PNG for name
+      operationId: getStatsImageName
+
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: Plant name (ID)
+          schema:
+            type: string
+        - name: contentType
+          in: query
+          required: true
+          description: contentType of Image
+          schema:
+            type: string
+            enum:
+              - png
+              - jpg
+              - gif
+      responses:
+        "200":
+          description: Success
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+
+
 
   /data/{name}:
     get:
@@ -67,10 +102,6 @@ paths:
           application/json:
            schema:
              $ref: "#/components/schemas/setDataBody"
-
-
-
-
       responses:
         "200":
           description: Success

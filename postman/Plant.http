@@ -31,3 +31,8 @@ GET http://{{server_adress}}/pump/{{plant}}
 # group: PLANT-GROW-API
 # @name Delete Plant by Name
 DELETE http://{{server_adress}}/deletePlant/{{plant}}
+
+
+###
+# @name Get Public Stats
+GET http://{{server_adress}}/statsImage/{{plant}}

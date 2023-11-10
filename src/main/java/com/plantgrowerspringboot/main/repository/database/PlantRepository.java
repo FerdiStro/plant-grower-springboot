@@ -11,6 +11,8 @@ import static java.lang.Math.toIntExact;
 
 public interface PlantRepository extends JpaRepository<PlantEntity, Long> {
 
+
+    //todo: chang convert methods to Spring Mapper
     default  Plant converToPlant(PlantEntity plantEntity){
         Plant plant =  new Plant();
         plant.setPump(plantEntity.getPump());

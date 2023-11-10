@@ -12,10 +12,22 @@ sonar {
 }
 
 tasks.register('sonarcheck') {
-    doLast {
-        if (project.hasProperty('prod')) {
 
-            tasks.sonar.extensions
+//    onlyIf (project.hasProperty('prod')) {
+//        logger.lifecycle("Scanning Sonar")
+//        sonar {}
+//    }
+    doLast {
+
+
+        if (project.hasProperty('prod')) {
+            logger.lifecycle("Scanning Sonar")
+
+            //execute sonar
+
+
+
+
         } else {
             logger.lifecycle("Sonar Skipped, Profile is not in prod mod")
         }
