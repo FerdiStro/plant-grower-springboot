@@ -2,10 +2,10 @@ buildscript {
 
     ext {
         // sonarcloud configuration
-        sonar_cloud_url = 'XX'
-        sonar_cloud_projectKey = 'XX'
-        sonar_cloud_projectName = 'XX'
-        sonar_cloud_logintoken = 'XX'
+        sonar_cloud_url = 'http://sonar.ferdi-homelab.casa/'
+        sonar_cloud_projectKey = 'sqp_01ee0937406669d3cf8d44205efaa0848b91ec09'
+        sonar_cloud_projectName = 'Plant-Spring'
+        sonar_cloud_logintoken = 'squ_2be44c2c63a944537534418a83bdb8d2df05035e'
 
     }
 }
@@ -61,6 +61,7 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
+
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '3.1.1'
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
@@ -81,5 +82,11 @@ tasks.named('test') {
 
 compileJava.dependsOn generateApi_Code
 
+compileJava.finalizedBy(sonarcheck)
 
-compileJava.dependsOn sonarcheck
+//compileJava.finalizedBy(sonarcheck)
+
+project.tasks["sonarcheck"].dependsOn test
+//sonarcheck.dependsOn test
+//compileJava.dependsOn sonarcheck
+

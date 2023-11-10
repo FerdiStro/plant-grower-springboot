@@ -2,54 +2,78 @@ package com.plantgrowerspringboot.main.api;
 
 
 import com.plant.plantgrow.api.PlantGrowApi;
+import com.plant.plantgrow.api.PublicStatsApi;
 import com.plant.plantgrow.model.*;
-import com.plantgrowerspringboot.main.RequestHandler;
+import com.plantgrowerspringboot.main.PlantRequestHandler;
+import com.plantgrowerspringboot.main.PublicStatsRequestHandler;
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 @org.springframework.web.bind.annotation.RestController
-public class RestController implements PlantGrowApi {
+public class RestController implements PlantGrowApi, PublicStatsApi {
 
 
 
-    RequestHandler requestHandler;
+    private  final PlantRequestHandler plantRequestHandler;
+    private final PublicStatsRequestHandler publicStatsRequestHandler;
 
-    public RestController(RequestHandler requestHandler){
-        this.requestHandler = requestHandler;
+    public RestController(
+            PlantRequestHandler       plantRequestHandler      ,
+            PublicStatsRequestHandler publicStatsRequestHandler
+    ){
+        this.plantRequestHandler       = plantRequestHandler      ;
+        this.publicStatsRequestHandler = publicStatsRequestHandler;
     }
 
     @Override
     public ResponseEntity<AllPlantDataResponse> allPlantData() {
-       return requestHandler.getAllPlantData();
+       return plantRequestHandler.getAllPlantData();
     }
 
     @Override
     public ResponseEntity<DeleteNameResponse> deletePlantName(String name) {
-        return requestHandler.deletePlantName(name);
+        return plantRequestHandler.deletePlantName(name);
     }
-
 
     @Override
     public ResponseEntity<PumpNameResponse> getPumpName(String name) {
-        return requestHandler.getPumpName(name);
+        return plantRequestHandler.getPumpName(name);
     }
 
     @Override
     public ResponseEntity<SetPlantDataNameResponse> putDataName(String name, String mos, SetDataBody setDataBody) {
-        return requestHandler.putDataName(name, mos, setDataBody.getPb());
+        return plantRequestHandler.putDataName(name, mos, setDataBody.getPb());
     }
 
     @Override
     public ResponseEntity<PutPumpNameResponse> setPumpName(String name, Integer pump) {
-        return requestHandler.setPumpName(name, pump);
+        return plantRequestHandler.setPumpName(name, pump);
     }
 
     @Override
     public ResponseEntity<PlantDataNameResponse> getDataName(String name) {
-        return requestHandler.getPlantDataName(name);
+        return plantRequestHandler.getPlantDataName(name);
     }
 
-
-
-
+    @Override
+    public ResponseEntity<Resource> getStatsImageName(String name, String contentType) {
+        return publicStatsRequestHandler.getStatsImageByName(name, contentType);
+    }
 }
