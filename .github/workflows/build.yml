@@ -37,9 +37,9 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t plant-grower-springboot .
-          docker tag plant-grower-springboot https://repository.ferdi-homelab.casa/plant-grower-springboot:latest
+          docker tag plant-grower-springboot repository.ferdi-homelab.casa/plant-grower-springboot:latest
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker push https://repository.ferdi-homelab.casa/plant-grower-springboot:latest
+          docker push repository.ferdi-homelab.casa/plant-grower-springboot:latest
 
       # - name: Deploy to Docker Swarm
       #   run: |
