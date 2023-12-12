@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.Buffer;
@@ -22,8 +23,9 @@ public class CreateStats {
 
     //Pic
     private final static Integer height = 600;
-    private final static Integer width = 500;
+    private final static Integer width = 300;
     private final static Integer fontSize  =  20;
+    private final static Integer margin = 20;
     private final BufferedImage image;
     private final Graphics2D graphics;
     private final JPanel jPanel   = new JPanel( );
@@ -32,61 +34,47 @@ public class CreateStats {
         this.repository = repository;
         this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         this.graphics = image.createGraphics();
-//        try {
-//            //write file
-//            ImageIO.write(image, "png", new File("test.png"));
-//
-//            //get base64 string
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//            ImageIO.write(image, "png", baos);
-//            byte[] imageBytes = baos.toByteArray();
-//            String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-//
-//
-//
-//        } catch (Exception e) {
-//           e.printStackTrace();
-//        }
     }
-
+    private BufferedImage getPlantPb(Plant plant){
+        byte[] imageBytes = Base64.getDecoder().decode(plant.getPb());
+        ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
+        try {
+            return   ImageIO.read(bis);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void paintPicture(Plant plant){
-
+        //Setup
+        BufferedImage image =  getPlantPb(plant);
         graphics.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
-        graphics.setColor(new Color(255, 255, 255, 0));
+        graphics.setColor(Color.RED);
         graphics.fillRect(0, 0, width , height);
         graphics.setColor(Color.white);
 
+        int x  = margin ;
+        int y  = margin;
+        int marginWidth  = (int)(width  * 0.65 - margin);
+        int marginHeight = (int)(height * 0.85 - margin);
 
-//        int x = 50;
-//        int y = 60;
-//        int w = 200;
-//        int h = 400;
-//        int d = w;
-//        int r = d/2;
-
-//        graphics.fillRect( x            ,    y             , w, h);
-//        graphics.fillRect(x +r       , y + r         , w, h);
-//        graphics.fillOval(x + w - r  , y -1          , d, d);
-//        graphics.fillOval(x - 1      , y + h  - r    , d, d);
-        DrawPresets.halfRoundBoxFrame(graphics, 50, 60, 200, 400, Color.WHITE);
+        // 280 / 2  = 140
+        // 140 + 280 = 420;
+        // 300 * 0,65  - 20 =  174
+        // 600 * x  - 20 = 480
+        DrawPresets.halfRoundBoxFrame(graphics, x, y, marginWidth, 480, 1, Color.WHITE);
 
 
 
         jPanel.setBackground(Color.white);
         this.graphics.setBackground(Color.white);
 
-        //name
-        DrawPresets.textBox(graphics, width/2, 30, 200, 100, plant.getName());
-
-
-
-        //avg
-        DrawPresets.textBox(graphics, 10 , 200, 200, 100, "AVG: "+ plant.getAvg());
-
-
-
-
-
+        //Text
+//        DrawPresets.textBox(graphics, x, 30, 200, 100, plant.getName());
+//        DrawPresets.textBox(graphics,x, 30, 200, 100, plant.getLast());
+//        DrawPresets.textBox(graphics, width/2, 30, 200, 100, plant.getMos());
+//        DrawPresets.textBox(graphics, 10 , 200, 200, 100, "AVG: "+ plant.getAvg());
+        //pic
+//        graphics.drawImage(image, width  / 2, height / 2, 200, 200 , null);
 
 
     }
