@@ -40,9 +40,4 @@ jobs:
           docker tag plant-grower-springboot repository.ferdi-homelab.casa/plant-grower-springboot:latest
           docker login repository.ferdi-homelab.casa -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push repository.ferdi-homelab.casa/plant-grower-springboot:latest
-
-      # - name: Deploy to Docker Swarm
-      #   run: |
-            # ssh ... 
-      #     docker stack deploy -c docker-compose.yml PLANT
   
